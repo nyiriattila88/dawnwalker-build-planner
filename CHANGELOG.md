@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.1 - 2026-10-07
+
+- The Active Abilities screen stands on a grey stone wall like the game's, with the runes carved into
+  it rather than drawn on it, and the ring of the wheel is a dark band in a shadow.
+- On the character screen the engraving runs on behind the abilities of the tree.
+
 ## 1.3.0 - 2026-10-07
 
 - The Active Abilities screen is the game's grey stone: the runes of its wheel are carved into the
