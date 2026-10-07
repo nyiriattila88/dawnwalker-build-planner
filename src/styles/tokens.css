@@ -13,8 +13,8 @@
   /* The colour each tree gives its abilities: fill and edge. */
   --witchcraft: #5f4596;
   --witchcraft-edge: #b49af0;
-  --swordmastery: #46709d;
-  --swordmastery-edge: #a9cdf2;
+  --swordmastery: #76808c;
+  --swordmastery-edge: #cdd3da;
   --vampirism: #a3232a;
   --vampirism-edge: #f07c73;
   /* Node edges: lit once learned, bright while open, dim while locked. */
