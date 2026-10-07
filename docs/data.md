@@ -25,6 +25,7 @@ The game shows what a rank costs only while it is still to learn. Read from the 
 | Vigour, Endless Effort                         | 4     | ranks 3 and 4: 1, 2 | ranks 3 and 4: 1, 1 |
 | Witchcraft Mastery                             | 4     | 1, 1, 1, 2          | 1, 1, 1, 1          |
 | Dimension Reach                                | 3     | 1, 1, 2             | 1, 1, 1             |
+| Vrakhiri Might                                 | 3     | ranks 2 and 3: 1, 2 | ranks 2 and 3: 1, 1 |
 | Unnatural Resilience                           | 2     | rank 2: 1           | rank 2: 1           |
 | Forager                                        | 2     | 1, 1                | 1, 1                |
 | Every Ultimate Perk (read on Sanguine Renewal) | 1     | 4                   | 2                   |

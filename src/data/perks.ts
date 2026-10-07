@@ -951,8 +951,8 @@ export const PERKS = [
     description: 'Increases Vampiric Ability Slots number.',
     ranks: [
       { effect: '2 Slots available.', cost: { skillPoints: 1, time: 1, estimated: true } },
-      { effect: '3 Slots available.', cost: { skillPoints: 1, time: 1, estimated: true } },
-      { effect: '4 Slots available.', cost: { skillPoints: 2, time: 1, estimated: true } },
+      { effect: '3 Slots available.', cost: { skillPoints: 1, time: 1, estimated: false } },
+      { effect: '4 Slots available.', cost: { skillPoints: 2, time: 1, estimated: false } },
     ],
     requires: null,
     position: [228, 444],
