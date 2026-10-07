@@ -1,0 +1,74 @@
+/* The tree pane, in the game's own pixels: perks, their lines, the Ultimate Perks and the abilities. */
+.tree-pane {
+  position: relative;
+  background:
+    radial-gradient(ellipse at 42% 48%, rgba(255, 255, 255, 0.035), transparent 62%),
+    radial-gradient(
+      ellipse at 42% 48%,
+      color-mix(in srgb, var(--tree-fill) 10%, transparent),
+      transparent 70%
+    );
+}
+
+.pane-label {
+  position: absolute;
+  color: var(--bright);
+  font-family: Cinzel, Georgia, serif;
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transform: translateY(-50%);
+}
+
+.links {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.links path {
+  fill: none;
+  stroke: var(--link);
+  stroke-width: 2.5;
+}
+
+.links path.lit {
+  stroke: var(--link-lit);
+}
+
+.ultimates-head {
+  position: absolute;
+  width: 870px;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  color: var(--text);
+  font-size: 17px;
+}
+
+.ultimates-title {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.ultimates-head small {
+  font-size: 15px;
+}
+
+.ultimate-spend {
+  color: var(--warning);
+}
+
+/* The thin crosses between the rows of abilities. */
+.grid-cross {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.28)) center / 1px 100%
+      no-repeat,
+    linear-gradient(rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.28)) center / 100% 1px
+      no-repeat;
+  transform: translate(-50%, -50%);
+}

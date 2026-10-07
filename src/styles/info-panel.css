@@ -1,0 +1,145 @@
+/* The panel beside the tree, worded and laid out like the game's own. */
+.info {
+  position: sticky;
+  top: 12px;
+  min-height: 560px;
+  padding-bottom: 16px;
+  border: 1px solid var(--panel-border);
+  background: var(--panel);
+}
+
+.info-head {
+  position: relative;
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--tree-fill, #3a3438) 32%, transparent),
+    transparent
+  );
+}
+
+.info-node {
+  position: relative;
+  display: block;
+  width: 92px;
+  height: 92px;
+  margin: 2px auto 12px;
+}
+
+.info-node .frame-edge {
+  fill: #2b282d;
+  stroke: var(--edge-learned);
+}
+
+.info-pips {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+}
+
+.info-pips .pips {
+  position: static;
+  transform: none;
+}
+
+.timing {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--gold);
+  font-size: 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.timing abbr {
+  text-decoration: none;
+  cursor: help;
+}
+
+.sun {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 3px rgba(227, 181, 106, 0.35);
+}
+
+.moon {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  box-shadow: inset -4px 0 0 0 var(--gold);
+  transform: rotate(-30deg);
+}
+
+.info h2 {
+  margin: 4px 0 0;
+  color: var(--gold);
+  font-size: 24px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.info-text {
+  margin: 12px 20px;
+  white-space: pre-line;
+}
+
+.info-ranks {
+  margin: 4px 20px;
+  padding: 0;
+  list-style: none;
+}
+
+.info-ranks li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 2px 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.rank-mark {
+  width: 10px;
+  height: 10px;
+  margin-top: 6px;
+  border: 1.5px solid var(--edge-open);
+  transform: rotate(45deg);
+}
+
+.info-ranks li.reached .rank-mark {
+  border-color: var(--edge-learned);
+  background: var(--edge-learned);
+}
+
+.rank-effect {
+  white-space: pre-line;
+}
+
+.info-ranks li.reached .rank-effect {
+  color: var(--bright);
+}
+
+.rank-cost {
+  grid-column: 2;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.rank-cost.estimated {
+  font-style: italic;
+  cursor: help;
+}
+
+.info-notes {
+  margin: 14px 20px 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.info-notes li + li {
+  margin-top: 6px;
+}

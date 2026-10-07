@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 60% 10%, rgba(120, 30, 34, 0.16), transparent 55%),
+    radial-gradient(ellipse at top, #19161a, #070608 78%);
+  color: var(--text);
+  font:
+    17px/1.4 'Alegreya Sans',
+    'Segoe UI',
+    Roboto,
+    Arial,
+    sans-serif;
+}
+
+button {
+  padding: 8px 18px;
+  border: 1px solid var(--field-border);
+  background: linear-gradient(#2a262c, #19171b);
+  color: var(--text);
+  font: inherit;
+  font-size: 16px;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: #9a939e;
+  color: var(--bright);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: Cinzel, Georgia, serif;
+  font-weight: 700;
+}

@@ -1,0 +1,102 @@
+/* The game's top bar: the screens on the left, what the build has spent on the right. */
+.screen-tabs {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  padding: 4px 4px 8px;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.screen-tab {
+  padding: 6px 2px;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font-family: Cinzel, Georgia, serif;
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.screen-tab:hover {
+  color: var(--bright);
+}
+
+.screen-tab.active {
+  color: var(--bright);
+  box-shadow: inset 0 -2px 0 var(--glow);
+}
+
+.spent {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  color: var(--bright);
+  font-size: 22px;
+}
+
+.estimate-mark {
+  color: var(--gold);
+}
+
+.cost-icon {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  vertical-align: -0.15em;
+}
+
+.cost-icon .hub {
+  fill: var(--node-fill);
+}
+
+/* Witchcraft, Swordmastery, Vampirism. */
+.tree-tabs {
+  display: flex;
+  gap: 26px;
+  padding: 12px 2px 4px;
+}
+
+.tree-tab {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 6px;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font-family: Cinzel, Georgia, serif;
+  font-size: 16px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.tree-tab:hover {
+  color: var(--bright);
+}
+
+.tree-tab.active {
+  color: var(--gold);
+}
+
+.tree-tab .emblem {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--tree-edge);
+  background: var(--tree-fill);
+  transform: rotate(45deg);
+}
+
+.tree-tab.active .emblem {
+  box-shadow: 0 0 10px var(--glow);
+}
+
+.tree-points {
+  min-width: 26px;
+  padding: 0 6px;
+  border: 1px solid var(--panel-border);
+  color: var(--bright);
+  font-family: 'Alegreya Sans', sans-serif;
+  font-size: 15px;
+}

@@ -1,0 +1,76 @@
+.page {
+  max-width: 1720px;
+  margin: 18px auto;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: rgba(10, 9, 11, 0.9);
+  border: 1px solid var(--frame);
+  box-shadow:
+    0 0 0 1px #000,
+    0 0 40px rgba(0, 0, 0, 0.85);
+}
+
+.masthead {
+  padding: 4px 0 12px;
+  border-bottom: 1px solid transparent;
+  border-image: linear-gradient(90deg, transparent, rgba(160, 40, 44, 0.7), transparent) 1;
+  text-align: center;
+}
+
+.masthead h1 {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.masthead-game {
+  color: var(--bright);
+  font-size: 34px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 12px #000;
+}
+
+.masthead-app {
+  color: var(--gold);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 9px;
+  text-transform: uppercase;
+}
+
+.screen {
+  min-height: 600px;
+}
+
+.character,
+.abilities {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 470px;
+  gap: 18px;
+  align-items: start;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.footer {
+  color: var(--muted);
+  font-size: 14px;
+  text-align: right;
+}
+
+.footer a {
+  color: var(--gold);
+}
+
+.footer .release {
+  font-family: Consolas, monospace;
+  font-size: 12px;
+}

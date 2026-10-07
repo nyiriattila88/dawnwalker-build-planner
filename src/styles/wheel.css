@@ -1,0 +1,224 @@
+/* The Active Abilities screen: the list, the wheel and the quickslots. */
+.wheel-screen {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr) 260px;
+  gap: 14px;
+  align-items: start;
+}
+
+.ability-list h3,
+.quickslot-set h4 {
+  margin: 4px 0 10px;
+  color: var(--bright);
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.ability-group h4 {
+  margin: 12px 0 6px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid color-mix(in srgb, var(--tree-edge) 40%, transparent);
+  color: var(--tree-edge);
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.ability-group-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ability-group-items button {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+.ability-group-items button:disabled {
+  cursor: default;
+  opacity: 0.75;
+}
+
+.ability-group-items button.slotted::after {
+  content: '✓';
+  position: absolute;
+  right: 0;
+  bottom: -4px;
+  color: #79d36c;
+  font-weight: 700;
+  text-shadow: 0 1px 2px #000;
+}
+
+.wheel {
+  position: relative;
+}
+
+.wheel-disc {
+  position: absolute;
+  inset: 92px;
+  border: 1px solid #3a353c;
+  border-radius: 50%;
+  background: radial-gradient(circle, #1b181c 0%, #121014 70%, #0b0a0c 100%);
+  box-shadow:
+    inset 0 0 70px #000,
+    0 0 0 34px rgba(255, 255, 255, 0.025),
+    0 0 0 35px rgba(255, 255, 255, 0.08);
+}
+
+.wheel-name {
+  position: absolute;
+  color: var(--bright);
+  font-family: Cinzel, Georgia, serif;
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+}
+
+.charges {
+  position: absolute;
+  display: flex;
+  gap: 14px;
+  transform: translate(-50%, -50%);
+}
+
+.charges i {
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #fff6c8, #e2b443 60%, #8b5e16);
+  box-shadow: 0 0 14px rgba(240, 190, 80, 0.75);
+  transform: rotate(45deg);
+}
+
+.wheel-button {
+  position: absolute;
+  width: 76px;
+  height: 76px;
+  padding: 0;
+  border: 0;
+  background: none;
+  transform: translate(-50%, -50%);
+}
+
+.wheel-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.3;
+}
+
+.wheel-button.open .frame-edge,
+.wheel-button:hover:not(:disabled) .frame-edge {
+  stroke: var(--glow);
+}
+
+.wheel-fixed {
+  position: absolute;
+  width: 62px;
+  height: 62px;
+  transform: translate(-50%, -50%);
+}
+
+/* A learned ability that needs no slot is fixed to the wheel. */
+.wheel-fixed::after {
+  content: '';
+  position: absolute;
+  right: -2px;
+  bottom: 2px;
+  width: 12px;
+  height: 10px;
+  border-radius: 2px;
+  background: #cfc8bc;
+  box-shadow:
+    0 -6px 0 -2px #0b0a0c,
+    0 -7px 0 -1px #cfc8bc;
+}
+
+.quickslot-set + .quickslot-set {
+  margin-top: 18px;
+}
+
+.pad {
+  display: grid;
+  grid-template: repeat(3, 66px) / repeat(3, 66px);
+  justify-content: center;
+}
+
+.pad .wheel-button {
+  position: static;
+  width: 66px;
+  height: 66px;
+  transform: none;
+}
+
+.pad .up {
+  grid-area: 1 / 2;
+}
+
+.pad .left {
+  grid-area: 2 / 1;
+}
+
+.pad .right {
+  grid-area: 2 / 3;
+}
+
+.pad .down {
+  grid-area: 3 / 2;
+}
+
+.choice-list {
+  margin-top: 16px;
+  padding: 10px;
+  border: 1px solid var(--panel-border);
+  background: var(--panel);
+}
+
+.choice-list header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.choice-list header button {
+  padding: 3px 10px;
+  font-size: 14px;
+}
+
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.choices button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 8px;
+  text-align: left;
+}
+
+.choices button.active {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.choices .ability-icon {
+  width: 40px;
+  height: 40px;
+  flex: none;
+}
+
+.choice-none {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+}

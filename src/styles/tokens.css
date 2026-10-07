@@ -1,0 +1,43 @@
+:root {
+  --text: #d9d3c9;
+  --bright: #f3eee6;
+  --muted: #8d867c;
+  --gold: #e3b56a;
+  --glow: #e08a35;
+  --warning: #d9483c;
+  --frame: #2c282e;
+  --panel: rgba(16, 14, 17, 0.94);
+  --panel-border: #39343a;
+  --field: #0c0b0d;
+  --field-border: #4d4750;
+  /* The colour each tree gives its abilities: fill and edge. */
+  --witchcraft: #5f4596;
+  --witchcraft-edge: #b49af0;
+  --swordmastery: #46709d;
+  --swordmastery-edge: #a9cdf2;
+  --vampirism: #a3232a;
+  --vampirism-edge: #f07c73;
+  /* Node edges: lit once learned, bright while open, dim while locked. */
+  --edge-learned: #f6f1e8;
+  --edge-open: #bdb6ab;
+  --edge-locked: #4b4650;
+  --node-fill: #1d1b1f;
+  --link: #3f3a42;
+  --link-lit: #ece6dc;
+}
+
+/* A tree's colour, for whatever sits inside its pane, tab or icon. */
+.tree-witchcraft {
+  --tree-fill: var(--witchcraft);
+  --tree-edge: var(--witchcraft-edge);
+}
+
+.tree-swordmastery {
+  --tree-fill: var(--swordmastery);
+  --tree-edge: var(--swordmastery-edge);
+}
+
+.tree-vampirism {
+  --tree-fill: var(--vampirism);
+  --tree-edge: var(--vampirism-edge);
+}

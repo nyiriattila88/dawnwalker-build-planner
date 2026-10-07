@@ -1,0 +1,155 @@
+/* A node of the tree: the frame, the glyph, the rank diamonds and the manual's book. */
+.node {
+  position: absolute;
+  width: 82px;
+  height: 82px;
+  padding: 0;
+  border: 0;
+  background: none;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.frame-edge {
+  fill: var(--node-fill);
+  stroke: var(--edge-locked);
+  stroke-width: 2.4;
+}
+
+.frame-inner {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 1;
+}
+
+.glyph {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 56%;
+  height: 56%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.node .glyph {
+  opacity: 0.32;
+}
+
+.node.open .frame-edge {
+  stroke: var(--edge-open);
+}
+
+.node.open .glyph {
+  opacity: 0.88;
+}
+
+.node.learned .frame-edge {
+  fill: #2b282d;
+  stroke: var(--edge-learned);
+}
+
+.node.learned .glyph {
+  opacity: 1;
+}
+
+.node:hover .frame-edge {
+  stroke: var(--bright);
+}
+
+.node.selected .frame {
+  filter: drop-shadow(0 0 5px var(--glow)) drop-shadow(0 0 2px var(--glow));
+}
+
+.node.selected .frame-edge {
+  stroke: var(--glow);
+}
+
+/* Taking another Ultimate Perk of the tree closes this one for good. */
+.ultimate.closed {
+  opacity: 0.35;
+}
+
+.pips {
+  position: absolute;
+  top: calc(100% - 4px);
+  left: 50%;
+  display: flex;
+  gap: 5px;
+  transform: translateX(-50%);
+}
+
+.pips i {
+  width: 8px;
+  height: 8px;
+  border: 1.5px solid var(--edge-open);
+  transform: rotate(45deg);
+}
+
+.pips i.lit {
+  border-color: var(--edge-learned);
+  background: var(--edge-learned);
+}
+
+.pips.locked i {
+  border-color: var(--edge-locked);
+}
+
+.manual {
+  position: absolute;
+  right: -2px;
+  bottom: 8px;
+  width: 18px;
+  fill: #cfc8bc;
+  opacity: 0.85;
+  filter: drop-shadow(0 1px 1px #000);
+}
+
+/* Abilities wear the colour of their tree, dimmed until learned. */
+.ability .frame-edge {
+  fill: color-mix(in srgb, var(--tree-fill) 40%, #0a090b);
+  stroke: color-mix(in srgb, var(--tree-edge) 40%, #0a090b);
+}
+
+.ability .glyph {
+  opacity: 0.5;
+}
+
+.ability.learned .frame-edge {
+  fill: var(--tree-fill);
+  stroke: var(--tree-edge);
+}
+
+.ability.learned .glyph {
+  opacity: 1;
+}
+
+.ability:hover .frame-edge {
+  stroke: var(--bright);
+}
+
+/* The same frame outside the tree: on the wheel, in the lists and in the info panel. */
+.ability-icon {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.ability-icon .frame-edge {
+  fill: var(--tree-fill);
+  stroke: var(--tree-edge);
+}
+
+.ability-icon.empty .frame-edge {
+  fill: var(--node-fill);
+  stroke: var(--edge-locked);
+}
