@@ -35,6 +35,7 @@ const place = (degrees: number, radius?: number) => {
 // the activation charges, and the day and night quickslots chosen from what is on the wheel.
 export function AbilityWheel({ catalog, build, onChange, onShow }: AbilityWheelProps): JSX.Element {
   const [picking, setPicking] = useState<Picking | null>(null);
+  const charges = build.activationCharges();
   const show = (ability: Ability): void => {
     onShow({ kind: 'ability', ability });
   };
@@ -148,9 +149,9 @@ export function AbilityWheel({ catalog, build, onChange, onShow }: AbilityWheelP
           <span
             className="charges"
             style={place(90, 200)}
-            aria-label={`${build.activationCharges()} activation charges`}
+            aria-label={`${charges} activation charge${charges === 1 ? '' : 's'}`}
           >
-            {Array.from({ length: build.activationCharges() }, (_, index) => (
+            {Array.from({ length: charges }, (_, index) => (
               <i key={index} />
             ))}
           </span>
