@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.3.0 - 2026-10-07
+
+- The Active Abilities screen is the game's grey stone: the runes of its wheel are carved into the
+  disc, and the runes around the wheel into the stone beside it, where the game's screen shows them.
+- A place that holds nothing shows what the game shows there: a cross on an empty slot, a lock on a
+  slot the tree has not opened yet and a circled cross on an empty quickslot. An X parts the four
+  quickslots of a set.
+
 ## 1.2.0 - 2026-10-07
 
 - Abilities can be dragged onto the ability wheel: from the list onto a slot of their tree, from slot to
