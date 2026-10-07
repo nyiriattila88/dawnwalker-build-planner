@@ -6,6 +6,7 @@ import { AbilityIcon } from './ability-icon';
 import { ChoiceList } from './choice-list';
 import { FitToWidth } from './fit-to-width';
 import type { InfoTarget } from './info-target';
+import { TreeEmblem } from './tree-emblem';
 import { onWheel, QUICKSLOT_PLACES, SLOT_ANGLES, SLOTLESS_ANGLES, WHEEL } from './wheel-layout';
 import { WheelButton } from './wheel-button';
 
@@ -97,7 +98,10 @@ export function AbilityWheel({ catalog, build, onChange, onShow }: AbilityWheelP
         <h3>All abilities</h3>
         {catalog.trees.map((tree) => (
           <div key={tree.id} className={`ability-group tree-${tree.id}`}>
-            <h4>{tree.name}</h4>
+            <h4>
+              <TreeEmblem tree={tree.id} />
+              {tree.name}
+            </h4>
             <div className="ability-group-items">
               {learned(tree).length === 0 && <p className="choice-none">None learned yet.</p>}
               {learned(tree).map((ability) => (
@@ -130,12 +134,15 @@ export function AbilityWheel({ catalog, build, onChange, onShow }: AbilityWheelP
         <div className="wheel" style={{ width: WHEEL.size, height: WHEEL.size }}>
           <div className="wheel-disc" aria-hidden="true" />
           <span className="wheel-name" style={place(-90, 150)}>
+            <TreeEmblem tree="swordmastery" />
             Swordmastery
           </span>
           <span className="wheel-name" style={place(146, 175)}>
+            <TreeEmblem tree="witchcraft" />
             Witchcraft
           </span>
           <span className="wheel-name" style={place(34, 175)}>
+            <TreeEmblem tree="vampirism" />
             Vampirism
           </span>
           <span

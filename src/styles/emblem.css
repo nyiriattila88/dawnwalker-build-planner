@@ -1,0 +1,26 @@
+/* A tree's sign in a thin diamond, in the colour of the text beside it. */
+.emblem {
+  position: relative;
+  display: inline-block;
+  flex: none;
+  width: 30px;
+  height: 30px;
+}
+
+.emblem::before {
+  position: absolute;
+  inset: 14%;
+  border: 1.5px solid currentColor;
+  content: '';
+  opacity: 0.5;
+  transform: rotate(45deg);
+}
+
+.emblem-sign {
+  position: absolute;
+  inset: 13%;
+  background: currentColor;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+}

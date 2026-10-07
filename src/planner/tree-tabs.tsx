@@ -1,6 +1,7 @@
 import type { JSX } from 'react';
 import type { BuildView } from '../build/build';
 import type { Tree } from '../catalog/catalog';
+import { TreeEmblem } from './tree-emblem';
 
 type TreeTabsProps = {
   readonly trees: readonly Tree[];
@@ -23,7 +24,7 @@ export function TreeTabs({ trees, current, build, onSelect }: TreeTabsProps): JS
             onSelect(tree);
           }}
         >
-          <span className="emblem" aria-hidden="true" />
+          <TreeEmblem tree={tree.id} />
           {tree.name}
           <span
             className="tree-points"

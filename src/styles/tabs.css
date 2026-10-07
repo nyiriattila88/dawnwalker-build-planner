@@ -80,16 +80,8 @@
   color: var(--gold);
 }
 
-.tree-tab .emblem {
-  width: 18px;
-  height: 18px;
-  border: 2px solid var(--tree-edge);
-  background: var(--tree-fill);
-  transform: rotate(45deg);
-}
-
 .tree-tab.active .emblem {
-  box-shadow: 0 0 10px var(--glow);
+  filter: drop-shadow(0 0 5px var(--glow));
 }
 
 .tree-points {

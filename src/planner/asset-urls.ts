@@ -8,3 +8,6 @@ const assetUrl = (path: string): string =>
 export const perkIconUrl = (id: string): string => assetUrl(`images/perks/${id}.png`);
 
 export const abilityIconUrl = (id: string): string => assetUrl(`images/abilities/${id}.png`);
+
+// A tree's sign, white on a transparent ground: the page colours it through a CSS mask.
+export const treeEmblemUrl = (id: string): string => assetUrl(`images/trees/${id}.png`);
