@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.2 - 2026-10-07
+
+- Swordmastery's abilities wear the game's steel grey instead of blue.
+- The tree tabs and the Active Abilities screen show each tree's emblem, as the game does.
+- Mercurial Fervour starts unlearned, as in the game, so a reset no longer leaves a rank on it.
+- Build codes start with a dot now. Links shared before keep working, and a build that bought ranks of
+  Mercurial Fervour keeps the ranks it bought.
+
 ## 1.0.1 - 2026-10-07
 
 - The abilities wear the game's own icons instead of glyphs cut from screenshots.
