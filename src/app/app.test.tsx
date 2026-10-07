@@ -21,6 +21,15 @@ const STINGING_BLADE = codeOf((build) => {
   build.addRank(catalog.perk('stinging-blade'));
 });
 
+// Every rank of every Swordmastery perk, far more than the 35 skill points its Ultimate Perks ask for.
+const SWORDMASTERY_PERKS = codeOf((build) => {
+  for (const perk of catalog.tree('swordmastery').perks) {
+    perk.ranks.forEach(() => {
+      build.addRank(perk);
+    });
+  }
+});
+
 type Planner = {
   readonly user: UserEvent;
   // Every build code the planner put into the address bar, null for an empty build.
@@ -44,6 +53,9 @@ const openPlanner = (code = ''): Planner => {
 
 const perkNode = (name: string, rank: number, ranks: number): HTMLElement =>
   screen.getByRole('button', { name: `${name}, rank ${rank} of ${ranks}` });
+
+const ultimateNode = (name: string, state: 'learned' | 'not learned'): HTMLElement =>
+  screen.getByRole('button', { name: `${name}, Ultimate Perk, ${state}` });
 
 describe('App', () => {
   it('learns a rank on a click and puts the new build into the address', async () => {
@@ -109,6 +121,31 @@ describe('App', () => {
     expect(
       screen.getByRole('button', { name: 'Dirty Trick in Day quickslots, up' }),
     ).toBeInTheDocument();
+  });
+
+  it('keeps the Ultimate Perks of a tree shut below 35 skill points', async () => {
+    const { user } = openPlanner(STINGING_BLADE);
+
+    await user.click(ultimateNode('Last Stand', 'not learned'));
+
+    expect(ultimateNode('Last Stand', 'not learned')).toBeInTheDocument();
+  });
+
+  it('opens the Ultimate Perks of a tree at 35 skill points and keeps only the one taken', async () => {
+    const { user } = openPlanner(SWORDMASTERY_PERKS);
+
+    await user.click(ultimateNode('Last Stand', 'not learned'));
+    await user.click(ultimateNode('Sword Sage', 'not learned'));
+
+    expect(ultimateNode('Last Stand', 'learned')).toBeInTheDocument();
+    expect(ultimateNode('Sword Sage', 'not learned')).toBeInTheDocument();
+  });
+
+  it('opens a link of 1.0 and puts the code of today for the same build into the address', () => {
+    const { shown } = openPlanner('BK9vcpGz_wvW1KAS7GxPWNnxHAAAZefB0gAA');
+
+    expect(perkNode('Stinging Blade', 2, 4)).toBeInTheDocument();
+    expect(shown.at(-1)).toMatch(/^\./);
   });
 
   it('keeps an unreadable code in the address and says it could not be read', () => {

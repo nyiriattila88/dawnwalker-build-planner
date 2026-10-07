@@ -72,8 +72,11 @@ beside it. A click on a slot opens the list of what it can take.
 Vitest runs the tests next to the code they test. The rules of `Build`, the catalog's checks and the
 build code with pinned codes and random round trips run in Node. The component tests (`*.test.tsx`) run
 in jsdom with Testing Library and find elements by role and accessible name, the way a screen reader
-does: they render `App` with the real catalog and codec and an address bar kept in memory. `pnpm check`
-runs the type check, type-aware ESLint (typescript-eslint `strictTypeChecked`), Prettier and knip.
+does. They render `App` with the real catalog and codec and an address bar kept in memory, and the
+parts that have behaviour of their own on their own: the ability wheel, the share panel, the tree tabs,
+the info panel and the controls of a node, taps on a touch screen included. That a `BuildView` has
+none of the commands is checked by the type check (`src/build/build-view.test.ts`). `pnpm check` runs
+the type check, type-aware ESLint (typescript-eslint `strictTypeChecked`), Prettier and knip.
 
 ## Deployment and releases
 
