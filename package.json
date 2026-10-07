@@ -1,7 +1,7 @@
 {
   "name": "dawnwalker-build-planner",
   "private": true,
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Build planner for The Blood of Dawnwalker: perks, abilities, the ability wheel and shareable build codes",
   "author": "Attila Nyiri",
   "license": "MIT",

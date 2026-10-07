@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.3 - 2026-10-07
+
+- Nothing changes in how the planner works: this release tidies the code behind it. New tests click,
+  tap and type through the ability wheel, the info panel, the tree tabs and the build code the way a
+  visitor does.
+- A screen reader says one skill point and one activation charge instead of "1 skill points".
+
 ## 1.0.2 - 2026-10-07
 
 - Swordmastery's abilities wear the game's steel grey instead of blue.
