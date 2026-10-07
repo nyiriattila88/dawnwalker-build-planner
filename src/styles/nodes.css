@@ -18,24 +18,25 @@
   overflow: visible;
 }
 
-.frame-edge {
-  fill: var(--node-fill);
-  stroke: var(--edge-locked);
-  stroke-width: 2.4;
-}
-
-.frame-inner {
-  fill: none;
-  stroke: rgba(255, 255, 255, 0.08);
+.frame-plate {
+  fill: #121113;
+  stroke: #000;
   stroke-width: 1;
 }
 
+.frame-edge {
+  fill: var(--node-fill);
+  stroke: var(--edge-locked);
+  stroke-width: 2.2;
+}
+
+/* The game draws its 128 px icons 60 px wide on a 1080p screen. */
 .glyph {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 56%;
-  height: 56%;
+  width: 73%;
+  height: 73%;
   transform: translate(-50%, -50%);
   pointer-events: none;
 }
@@ -105,27 +106,35 @@
 
 .manual {
   position: absolute;
-  right: -2px;
-  bottom: 8px;
-  width: 18px;
+  right: 11px;
+  bottom: 17px;
+  width: 17px;
   fill: #cfc8bc;
   opacity: 0.85;
   filter: drop-shadow(0 1px 1px #000);
 }
 
-/* Abilities wear the colour of their tree, dimmed until learned. */
+/* Abilities wear the colour of their tree, dimmed until learned: a band around a darker disc. */
+.ability .frame-plate {
+  fill: color-mix(in srgb, var(--tree-fill) 45%, #0a090b);
+}
+
 .ability .frame-edge {
-  fill: color-mix(in srgb, var(--tree-fill) 40%, #0a090b);
-  stroke: color-mix(in srgb, var(--tree-edge) 40%, #0a090b);
+  fill: color-mix(in srgb, var(--tree-fill) 25%, #0a090b);
+  stroke: #0a090b;
+  stroke-width: 1.2;
 }
 
 .ability .glyph {
   opacity: 0.5;
 }
 
-.ability.learned .frame-edge {
+.ability.learned .frame-plate {
   fill: var(--tree-fill);
-  stroke: var(--tree-edge);
+}
+
+.ability.learned .frame-edge {
+  fill: color-mix(in srgb, var(--tree-fill) 72%, #0a090b);
 }
 
 .ability.learned .glyph {
@@ -144,12 +153,22 @@
   height: 100%;
 }
 
-.ability-icon .frame-edge {
+.ability-icon .frame-plate {
   fill: var(--tree-fill);
-  stroke: var(--tree-edge);
+}
+
+.ability-icon .frame-edge {
+  fill: color-mix(in srgb, var(--tree-fill) 72%, #0a090b);
+  stroke: #0a090b;
+  stroke-width: 1.2;
+}
+
+.ability-icon.empty .frame-plate {
+  fill: #121113;
 }
 
 .ability-icon.empty .frame-edge {
   fill: var(--node-fill);
   stroke: var(--edge-locked);
+  stroke-width: 2.2;
 }
