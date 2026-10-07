@@ -7,7 +7,7 @@ it was copied from.
 
 **Open it at <https://nyiriattila88.github.io/dawnwalker-build-planner/>**
 
-![The Swordmastery tree of the planner, with the info panel beside it](docs/screenshot.png)
+![The Swordmastery tree of the planner, with the info panel beside it](docs/screenshot.webp)
 
 ## What it plans
 
