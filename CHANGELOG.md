@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.2.0 - 2026-10-07
+
+- Abilities can be dragged onto the ability wheel: from the list onto a slot of their tree, from slot to
+  slot, onto a quickslot and from one quickslot set to the other. An ability dragged off its slot
+  leaves it, and a click on a slot still opens the list of what it can take.
+- The Ultimate Perks of Swordmastery and Witchcraft count only the skill points spent on the tree's
+  perks, as in the game: abilities no longer count toward the 35.
+- A build saved with an Ultimate Perk that abilities helped open loads without that Ultimate Perk.
+- The Active Abilities screen keeps its quickslots beside the wheel without an empty band under them,
+  and stands on the game's engraving too.
+
 ## 1.1.0 - 2026-10-07
 
 - The skill trees stand on the game's own engraving, the picture its character screen shows behind
