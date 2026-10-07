@@ -1,6 +1,7 @@
 import { useState, type JSX } from 'react';
 import type { BuildCodec } from '../build/build-code';
 import type { Catalog, Tree } from '../catalog/catalog';
+import { backdropUrl } from '../planner/asset-urls';
 import { AbilityWheel } from '../planner/ability-wheel';
 import { FitToWidth } from '../planner/fit-to-width';
 import { TREE_VIEW } from '../planner/geometry';
@@ -39,6 +40,11 @@ export function App({ catalog, codec, address }: AppProps): JSX.Element {
 
   return (
     <div className="page">
+      <div
+        className="backdrop"
+        aria-hidden="true"
+        style={{ backgroundImage: `url("${backdropUrl}")` }}
+      />
       <header className="masthead">
         <h1>
           <span className="masthead-game">The Blood of Dawnwalker</span>

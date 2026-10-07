@@ -10,14 +10,6 @@
     );
 }
 
-.pane-art {
-  position: absolute;
-  inset: 0;
-  background: center / 100% 100% no-repeat;
-  opacity: 0.6;
-  pointer-events: none;
-}
-
 .pane-label {
   position: absolute;
   color: var(--bright);

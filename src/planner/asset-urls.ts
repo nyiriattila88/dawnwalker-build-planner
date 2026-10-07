@@ -12,8 +12,5 @@ export const abilityIconUrl = (id: string): string => assetUrl(`images/abilities
 // A tree's sign, white on a transparent ground: the page colours it through a CSS mask.
 export const treeEmblemUrl = (id: string): string => assetUrl(`images/trees/${id}.png`);
 
-// The engraving behind every tree of the game's character screen, painted clear of the nodes on it.
-export const characterBackgroundUrl = assetUrl('images/character-background.webp');
-
-// The grey stone of the Active Abilities screen: a tile that repeats without a seam.
-export const stoneUrl = assetUrl('images/stone.webp');
+// The page's backdrop: an official wallpaper of the game, cut above its logos.
+export const backdropUrl = assetUrl('images/backdrop.webp');
