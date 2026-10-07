@@ -2,6 +2,7 @@ import type { JSX } from 'react';
 import type { Build, BuildView } from '../build/build';
 import type { Tree } from '../catalog/catalog';
 import { AbilityNode } from './ability-node';
+import { characterBackgroundUrl } from './asset-urls';
 import { SkillPointIcon } from './cost-icons';
 import { ABILITY_GRID, LABELS, toView, TREE_VIEW } from './geometry';
 import { sameTarget, type InfoTarget } from './info-target';
@@ -33,6 +34,11 @@ export function TreePane({ tree, build, target, onChange, onShow }: TreePaneProp
       className={`tree-pane tree-${tree.id}`}
       style={{ width: TREE_VIEW.width, height: TREE_VIEW.height }}
     >
+      <div
+        className="pane-art"
+        aria-hidden="true"
+        style={{ backgroundImage: `url("${characterBackgroundUrl}")` }}
+      />
       <span className="pane-label" style={place(LABELS.perks)}>
         Perks
       </span>
