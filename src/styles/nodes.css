@@ -163,13 +163,3 @@
   stroke: #0a090b;
   stroke-width: 1.2;
 }
-
-.ability-icon.empty .frame-plate {
-  fill: #121113;
-}
-
-.ability-icon.empty .frame-edge {
-  fill: var(--node-fill);
-  stroke: var(--edge-locked);
-  stroke-width: 2.2;
-}

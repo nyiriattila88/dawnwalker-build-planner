@@ -2,7 +2,6 @@ import { useMemo, useState, type JSX, type ReactNode } from 'react';
 import type { Build, BuildView, QuickslotSet } from '../build/build';
 import type { Ability, Catalog, Tree } from '../catalog/catalog';
 import { AbilityIcon } from './ability-icon';
-import { characterBackgroundUrl } from './asset-urls';
 import { ChoiceList } from './choice-list';
 import { dropTargetKey, type DropTarget } from './drag-and-drop';
 import { FitToWidth } from './fit-to-width';
@@ -11,6 +10,7 @@ import { TreeEmblem } from './tree-emblem';
 import { useDragAndDrop } from './use-drag-and-drop';
 import { onWheel, QUICKSLOT_PLACES, SLOT_ANGLES, SLOTLESS_ANGLES, WHEEL } from './wheel-layout';
 import { WheelButton } from './wheel-button';
+import { WheelRunes, WheelSurround } from './wheel-runes';
 
 type AbilityWheelProps = {
   readonly catalog: Catalog;
@@ -121,11 +121,7 @@ export function AbilityWheel({
 
   return (
     <div className="wheel-screen">
-      <div
-        className="screen-art"
-        aria-hidden="true"
-        style={{ backgroundImage: `url("${characterBackgroundUrl}")` }}
-      />
+      <div className="screen-art" aria-hidden="true" />
       <section className="ability-list" aria-label="All abilities">
         <h3>All abilities</h3>
         {catalog.trees.map((tree) => (
@@ -168,7 +164,9 @@ export function AbilityWheel({
 
       <FitToWidth width={WHEEL.size} height={WHEEL.size}>
         <div className="wheel" style={{ width: WHEEL.size, height: WHEEL.size }}>
+          <WheelSurround />
           <div className="wheel-disc" aria-hidden="true" />
+          <WheelRunes />
           <span className="wheel-name" style={place(-90, 150)}>
             <TreeEmblem tree="swordmastery" />
             Swordmastery
@@ -198,6 +196,7 @@ export function AbilityWheel({
                 <WheelButton
                   key={dropTargetKey(target)}
                   held={held}
+                  kind="slot"
                   label={`${tree.name} slot ${index + 1}`}
                   className={`slot tree-${tree.id}`}
                   style={place(angle)}
@@ -275,6 +274,7 @@ export function AbilityWheel({
                     <WheelButton
                       key={where}
                       held={held}
+                      kind="quickslot"
                       label={`${SET_NAMES[set]}, ${where}`}
                       className={`quickslot ${where}`}
                       open={isPicking(target)}
