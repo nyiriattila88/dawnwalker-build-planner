@@ -5,13 +5,13 @@ which parts are not yet read from the game itself.
 
 ## Where it comes from
 
-| Data                                                   | Source                                                                                                  | Files                                                      |
-| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| Names, descriptions and the effect of every rank       | The game's own text, through the Gamer Guides database of perks                                         | `src/data/perks.ts`, `ultimates.ts`, `abilities.ts`        |
-| Perk icons                                             | The same database, which holds the game's `t_icon_perk_*` icons                                         | `public/images/perks/`                                     |
-| Ability icons                                          | Cut from screenshots of the character screen and photos of the Active Abilities screen, as white glyphs | `public/images/abilities/`                                 |
-| Tree layout: node positions and the lines between them | Screenshots of the character screen (Gamer Guides, Mobalytics, photos of the game)                      | `position` and `requires` in `src/data/perks.ts`           |
-| The ability wheel: slots, charges, quickslots          | The perks' own text and a photo of the Active Abilities screen                                          | `src/data/ability-wheel.ts`, `src/planner/wheel-layout.ts` |
+| Data                                                   | Source                                                                                                                                                                         | Files                                                      |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------- |
+| Names, descriptions and the effect of every rank       | The game's own text, through the Gamer Guides database of perks                                                                                                                | `src/data/perks.ts`, `ultimates.ts`, `abilities.ts`        |
+| Perk icons                                             | The same database, which holds the game's `t_icon_perk_*` icons                                                                                                                | `public/images/perks/`                                     |
+| Ability icons                                          | The game's own `T_Icon_AA_*` textures as MetaBot.GG publishes them, and Soul Reaping, which it lacks, cut from a lossless screenshot of the character screen in the same style | `public/images/abilities/`                                 |
+| Tree layout: node positions and the lines between them | Screenshots of the character screen (Gamer Guides, Mobalytics, photos of the game)                                                                                             | `position` and `requires` in `src/data/perks.ts`           |
+| The ability wheel: slots, charges, quickslots          | The perks' own text and a photo of the Active Abilities screen                                                                                                                 | `src/data/ability-wheel.ts`, `src/planner/wheel-layout.ts` |
 
 The three data files were generated once from that material and are edited by hand from now on.
 Their order is the order build codes walk, so an entry is never moved or removed (see AGENTS.md).
@@ -38,9 +38,10 @@ When a perk's day or night label was not read from its info panel, it is inferre
 its description (`timingEstimated: true`): Swordmastery anytime, Vampirism night only, Witchcraft day
 only, except the gathering, crafting and trade perks, which apply anytime.
 
-Some abilities were placed on their tree's grid by their icon and frame rather than by the name the
-game shows for that cell (`cellEstimated: true`): Broad Swing, Walking Fortress, Swiftness, Adrenaline
-Rush, Soul Reaping, Life Lock, Shadowstorm, Piercing Shriek and Death from Above.
+Every ability sits in the cell of its tree's grid that shows its icon: the game names its ability
+textures after the ability (`T_Icon_AA_SoulStigma`), and each texture was matched to a cell of a
+screenshot of the character screen. The emblems on the abilities' manuals agree, and Soul Reaping, the
+one without a texture, takes the last free cell, where its manual's emblem is drawn.
 
 Two rules are assumptions: the 35 skill points an ultimate asks for count abilities as well as perks,
 and an ability needs no other ability first.

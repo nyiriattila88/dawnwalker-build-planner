@@ -39,9 +39,9 @@ ESLint checks both, so a wrong import fails `pnpm check`.
   test pass.
 - **A perk comes after the perk it requires.** Decoding adds ranks in data order, so a parent must come
   first. The catalog refuses data that breaks this.
-- **An estimate is never shown as the game's own number.** A rank's `cost.estimated`, a perk's
-  `timingEstimated` and an ability's `cellEstimated` say what was not read from the game. Only set one
-  to `false` with the game's own screen as the source, and update the tables in docs/data.md.
+- **An estimate is never shown as the game's own number.** A rank's `cost.estimated` and a perk's
+  `timingEstimated` say what was not read from the game. Only set one to `false` with the game's own
+  screen as the source, and update the tables in docs/data.md.
 - **The address is the only state.** The build lives in the `build` parameter of the page address
   (`src/app/build-address.ts`), nothing is stored in the browser.
 - **Every rule lives in `Build`.** Components call its commands and never decide what is allowed. Every
