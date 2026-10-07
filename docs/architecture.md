@@ -33,7 +33,7 @@ by id are total: `catalog.perk(id)` throws on an unknown id, which the `PerkId` 
 `Build` holds the perk and ability ranks, one Ultimate Perk per tree, the abilities on the wheel and
 the two quickslot sets. Commands change it and return nothing, queries read it and change nothing.
 Every command ends in `#normalize`, which takes back whatever the change left without its requirement:
-the perks below a perk that lost its first rank, an ultimate whose tree fell under 35 points, an
+the perks below a perk that lost its first rank, an ultimate whose tree's perks fell under 35 points, an
 ability in a slot the tree no longer has, a quickslot whose ability left the wheel. So a build is valid
 after every command, and no component has to know a rule.
 

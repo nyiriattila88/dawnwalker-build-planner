@@ -15,7 +15,7 @@ it was copied from.
   take it back. A perk opens once the perk its line leads down from has a rank, the way the game
   draws its trees, and taking that rank back takes the perks below it too.
 - **Ultimate Perks.** One per tree, and taking one closes the other two. Swordmastery and Witchcraft
-  ask for 35 skill points spent in the tree first; Vampirism's open with Corruption.
+  ask for 35 skill points spent on the tree's perks first, Vampirism's open with Corruption.
 - **Abilities.** Every ability of every tree with its ranks, active and passive ones, and the ones the
   story grants.
 - **The ability wheel.** Each tree has one slot, and one more for every rank of its slot perk

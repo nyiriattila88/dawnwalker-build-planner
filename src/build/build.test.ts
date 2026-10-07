@@ -82,6 +82,20 @@ describe('Build Ultimate Perks', () => {
     expect(build.treeSpending('swordmastery').skillPoints).toBeGreaterThanOrEqual(35 + 4);
   });
 
+  it('counts only the perks of a tree toward the points its ultimates ask for', () => {
+    const build = new Build(catalog);
+    const swordmastery = catalog.tree('swordmastery');
+    for (const ability of swordmastery.abilities) {
+      ability.ranks.forEach(() => {
+        build.addAbilityRank(ability);
+      });
+    }
+    build.addRank(catalog.perk('stinging-blade'));
+
+    expect(build.pointsToUltimate('swordmastery')).toBe(34);
+    expect(build.treeSpending('swordmastery').skillPoints).toBeGreaterThan(1);
+  });
+
   it('keeps one ultimate per tree', () => {
     const build = new Build(catalog);
     spendForUltimate(build, 'swordmastery');

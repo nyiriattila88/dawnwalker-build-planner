@@ -105,11 +105,12 @@ export class Build {
     return id === undefined ? null : this.#catalog.ultimate(id);
   }
 
-  // Points still to spend in the tree before its ultimates open, or 0 when Corruption gates them.
+  // Points still to spend on the tree's perks before its ultimates open, or 0 when Corruption gates
+  // them. Abilities do not count.
   pointsToUltimate(tree: TreeId): number {
     const needed = this.#catalog.tree(tree).ultimatePoints;
     if (needed === null) return 0;
-    return Math.max(0, needed - this.#treeSpendingWithoutUltimate(tree).skillPoints);
+    return Math.max(0, needed - this.#perkSpending(tree).skillPoints);
   }
 
   canTakeUltimate(ultimate: Ultimate): boolean {
@@ -282,14 +283,19 @@ export class Build {
     this.#normalize();
   }
 
+  #perkSpending(tree: TreeId): Spending {
+    return this.#catalog
+      .tree(tree)
+      .perks.map((perk) => sum(perk.ranks, 0, this.rank(perk)))
+      .reduce(combine, NOTHING);
+  }
+
   #treeSpendingWithoutUltimate(tree: TreeId): Spending {
-    const own = this.#catalog.tree(tree);
-    const perks = own.perks.map((perk) => sum(perk.ranks, 0, this.rank(perk)));
     // The ranks the story grants cost nothing.
-    const abilities = own.abilities.map((ability) =>
-      sum(ability.ranks, ability.granted, this.abilityRank(ability)),
-    );
-    return [...perks, ...abilities].reduce(combine, NOTHING);
+    const abilities = this.#catalog
+      .tree(tree)
+      .abilities.map((ability) => sum(ability.ranks, ability.granted, this.abilityRank(ability)));
+    return [this.#perkSpending(tree), ...abilities].reduce(combine, NOTHING);
   }
 
   #emptySlots(): (AbilityId | null)[] {

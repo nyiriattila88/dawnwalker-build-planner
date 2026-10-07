@@ -52,8 +52,9 @@ Five abilities start with their first rank, as the story grants it: Compel Soul,
 Burning Blood, Dirty Trick and Voracious Bite. This was checked in the game, where Mercurial Fervour has
 to be learned like any other rank.
 
-Two rules are assumptions: the 35 skill points an ultimate asks for count abilities as well as perks,
-and an ability needs no other ability first.
+The 35 skill points an Ultimate Perk of Swordmastery or Witchcraft asks for count only the perks of
+its tree, not the abilities: this was checked in the game. One rule is an assumption: an ability needs
+no other ability first.
 
 ## Making an estimate exact
 
