@@ -23,6 +23,9 @@ type Field = {
   readonly radix: number;
   readonly read: (build: BuildView) => number;
   readonly write: (build: Build, digit: number) => void;
+  // A rule that changed may refuse this digit to a build that holds everything else, so a code written
+  // before the change is read without it.
+  readonly droppable: boolean;
 };
 
 const repeat = (times: number, action: () => void): void => {
@@ -34,6 +37,7 @@ const repeat = (times: number, action: () => void): void => {
 // ability's digit counts the ranks bought, up to what its layout's granted rank left to buy.
 function fields(catalog: Catalog, granted: (ability: Ability) => number): readonly Field[] {
   const perks = catalog.perks.map((perk): Field => ({
+    droppable: false,
     radix: perk.ranks.length + 1,
     read: (build) => build.rank(perk),
     write: (build, digit) => {
@@ -43,6 +47,7 @@ function fields(catalog: Catalog, granted: (ability: Ability) => number): readon
     },
   }));
   const abilities = catalog.abilities.map((ability): Field => ({
+    droppable: false,
     radix: ability.ranks.length - granted(ability) + 1,
     read: (build) => build.abilityRank(ability) - ability.granted,
     write: (build, digit) => {
@@ -51,7 +56,10 @@ function fields(catalog: Catalog, granted: (ability: Ability) => number): readon
       });
     },
   }));
+  // Abilities counted toward the 35 points before 1.2, so a code of then may hold an ultimate its
+  // perks alone do not open.
   const ultimates = catalog.trees.map((tree): Field => ({
+    droppable: true,
     radix: tree.ultimates.length + 1,
     read: (build) => {
       const taken = build.ultimate(tree.id);
@@ -67,6 +75,7 @@ function fields(catalog: Catalog, granted: (ability: Ability) => number): readon
   const slots = catalog.trees.flatMap((tree) => {
     const slottable = tree.abilities.filter((ability) => ability.kind !== 'slotless');
     return Array.from({ length: most }, (_, index): Field => ({
+      droppable: false,
       radix: slottable.length + 1,
       read: (build) => {
         const held = build.slotAt(tree.id, index);
@@ -84,6 +93,7 @@ function fields(catalog: Catalog, granted: (ability: Ability) => number): readon
         (a) => a.kind === 'active' && QUICKSLOT_TREES[set].includes(a.tree),
       );
       return Array.from({ length: catalog.wheel.quickslots }, (_, index): Field => ({
+        droppable: false,
         radix: actives.length + 1,
         read: (build) => {
           const held = build.quickslotAt(set, index);
@@ -131,7 +141,7 @@ const write = (walk: readonly Field[], build: BuildView): string => {
 
 // Writes a build as a mark and one mixed-radix number in base64url. A build has exactly one code and
 // a code exactly one build: decoding rebuilds through the commands of Build and accepts only a code
-// that the result writes back unchanged.
+// in its one spelling whose every digit the result holds, a droppable one or nothing.
 export function createBuildCodec(catalog: Catalog): BuildCodec {
   const current = fields(catalog, (ability) => ability.granted);
   const before = fields(catalog, (ability) => GRANTED_IN_1_0[ability.id] ?? ability.granted);
@@ -144,16 +154,24 @@ export function createBuildCodec(catalog: Catalog): BuildCodec {
     const walk = marked ? current : before;
     const text = marked ? code.slice(MARK.length) : code;
     if (text === '') return null;
-    let rest = fromText(text);
-    if (rest === null) return null;
+    const value = fromText(text);
+    if (value === null || toText(value) !== text) return null;
+    let rest = value;
     const build = new Build(catalog);
+    const digits: { readonly field: Field; readonly digit: number }[] = [];
     for (const field of walk) {
       const radix = BigInt(field.radix);
-      field.write(build, Number(rest % radix));
+      const digit = Number(rest % radix);
+      field.write(build, digit);
+      digits.push({ field, digit });
       rest /= radix;
     }
     if (rest !== 0n) return null;
-    return write(walk, build) === text ? build : null;
+    const held = digits.every(({ field, digit }) => {
+      const now = field.read(build);
+      return now === digit || (field.droppable && now === 0);
+    });
+    return held ? build : null;
   };
 
   return { encode, decode };

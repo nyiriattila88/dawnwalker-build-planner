@@ -130,6 +130,14 @@ describe('createBuildCodec', () => {
     ]);
   });
 
+  it('reads a code of an Ultimate Perk that abilities helped open, without that Ultimate Perk', () => {
+    // Written by 1.0 for the README: Last Stand on 43 Swordmastery points, abilities among them.
+    const decoded = codec.decode('le3uHYSmJX9Klarv1Wxx69B7OgAA');
+
+    expect(decoded?.ultimate('swordmastery')).toBeNull();
+    expect(decoded?.rank(catalog.perk('precision'))).toBeGreaterThan(0);
+  });
+
   it('rejects a second spelling of a build', () => {
     expect(['AA', '.AA'].map((code) => codec.decode(code))).toEqual([null, null]);
     expect(['A', '.A'].map((code) => codec.decode(code)?.isEmpty())).toEqual([true, true]);
