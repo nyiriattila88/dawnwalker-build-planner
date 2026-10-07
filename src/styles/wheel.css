@@ -9,17 +9,24 @@
   align-items: start;
 }
 
-/* The grey stone of the game's Active Abilities screen, lit around the wheel. */
+/* The grey stone wall of the game's Active Abilities screen, darkening towards the page. */
 .screen-art {
   position: absolute;
   inset: -12px;
-  background: radial-gradient(
-    ellipse 62% 72% at 50% 45%,
-    rgba(124, 129, 138, 0.26),
-    rgba(74, 77, 84, 0.1) 60%,
-    transparent 100%
-  );
+  background-size: 1024px;
   pointer-events: none;
+}
+
+.screen-art::after {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 80% at 48% 45%,
+    rgba(10, 10, 12, 0.15) 30%,
+    rgba(10, 10, 12, 0.6) 75%,
+    rgba(10, 10, 12, 0.92) 100%
+  );
+  content: '';
 }
 
 .ability-list,
@@ -133,13 +140,19 @@
 .wheel-disc {
   position: absolute;
   inset: 92px;
-  border: 1px solid #3a353c;
+  border: 2px solid rgba(214, 218, 224, 0.45);
   border-radius: 50%;
-  background: radial-gradient(circle, #46484d 0%, #36383c 55%, #1d1e21 100%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(0, 0, 0, 0.08) 70%,
+    rgba(0, 0, 0, 0.35) 100%
+  );
   box-shadow:
-    inset 0 0 70px #000,
-    0 0 0 34px rgba(255, 255, 255, 0.025),
-    0 0 0 35px rgba(255, 255, 255, 0.08);
+    inset 0 0 40px rgba(0, 0, 0, 0.35),
+    0 0 0 34px #16171a,
+    0 0 0 36px rgba(214, 218, 224, 0.35),
+    0 0 80px 40px rgba(0, 0, 0, 0.55);
 }
 
 /* The runes of the game's wheel, carved into its disc. */
@@ -161,16 +174,24 @@
   stroke-linejoin: round;
 }
 
+.rune-groove {
+  mix-blend-mode: multiply;
+}
+
+.rune-rim {
+  mix-blend-mode: screen;
+}
+
 .rune-groove path,
 .rune-groove circle {
-  stroke: #0c0c0e;
-  opacity: 0.8;
+  stroke: #2a2c31;
+  opacity: 0.9;
 }
 
 .rune-rim path,
 .rune-rim circle {
-  stroke: #b3b9c2;
-  opacity: 0.35;
+  stroke: #d8dce2;
+  opacity: 0.5;
 }
 
 .wheel-surround {
@@ -184,14 +205,9 @@
   transform: translateX(-50%);
 }
 
-.wheel-surround .rune-groove path,
-.wheel-surround .rune-groove circle {
-  opacity: 0.55;
-}
-
-.wheel-surround .rune-rim path,
-.wheel-surround .rune-rim circle {
-  opacity: 0.22;
+.wheel-runes path,
+.wheel-runes circle {
+  stroke-width: 14;
 }
 
 .wheel-runes .dot,
@@ -200,11 +216,11 @@
 }
 
 .rune-groove .dot {
-  fill: #0c0c0e;
+  fill: #2a2c31;
 }
 
 .rune-rim .dot {
-  fill: #b3b9c2;
+  fill: #d8dce2;
 }
 
 .wheel-name .emblem {

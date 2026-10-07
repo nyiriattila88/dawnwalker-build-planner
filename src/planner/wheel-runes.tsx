@@ -90,14 +90,28 @@ function Runes({
   );
 }
 
-// Carved, not drawn: a light rim above and to the left of each dark groove.
-function Carved({ set }: { readonly set: RuneSet }): JSX.Element {
+// Carved into the stone, not drawn on it: a dark groove whose lower right wall catches the light,
+// with the uneven edge of a chisel.
+function Carved({ set, id }: { readonly set: RuneSet; readonly id: string }): JSX.Element {
   return (
     <>
-      <g transform="translate(-2 -2)">
-        <Runes set={set} className="rune-rim" />
+      <defs>
+        <filter id={id}>
+          <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves={2} seed={3} />
+          <feDisplacementMap
+            in="SourceGraphic"
+            scale={3}
+            xChannelSelector="R"
+            yChannelSelector="G"
+          />
+        </filter>
+      </defs>
+      <g filter={`url(#${id})`}>
+        <g transform="translate(2 2)">
+          <Runes set={set} className="rune-rim" />
+        </g>
+        <Runes set={set} className="rune-groove" />
       </g>
-      <Runes set={set} className="rune-groove" />
     </>
   );
 }
@@ -106,7 +120,7 @@ export function WheelRunes(): JSX.Element {
   return (
     <svg className="wheel-runes" viewBox="0 0 760 760" aria-hidden="true">
       <g transform="translate(178.3 76) scale(0.6315)">
-        <Carved set={DISC} />
+        <Carved set={DISC} id="chisel-disc" />
       </g>
     </svg>
   );
@@ -116,7 +130,7 @@ export function WheelRunes(): JSX.Element {
 export function WheelSurround(): JSX.Element {
   return (
     <svg className="wheel-surround" viewBox="-83 120 2112 802" aria-hidden="true">
-      <Carved set={SURROUND} />
+      <Carved set={SURROUND} id="chisel-surround" />
     </svg>
   );
 }

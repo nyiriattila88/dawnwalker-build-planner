@@ -2,6 +2,7 @@ import { useMemo, useState, type JSX, type ReactNode } from 'react';
 import type { Build, BuildView, QuickslotSet } from '../build/build';
 import type { Ability, Catalog, Tree } from '../catalog/catalog';
 import { AbilityIcon } from './ability-icon';
+import { stoneUrl } from './asset-urls';
 import { ChoiceList } from './choice-list';
 import { dropTargetKey, type DropTarget } from './drag-and-drop';
 import { FitToWidth } from './fit-to-width';
@@ -121,7 +122,11 @@ export function AbilityWheel({
 
   return (
     <div className="wheel-screen">
-      <div className="screen-art" aria-hidden="true" />
+      <div
+        className="screen-art"
+        aria-hidden="true"
+        style={{ backgroundImage: `url("${stoneUrl}")` }}
+      />
       <section className="ability-list" aria-label="All abilities">
         <h3>All abilities</h3>
         {catalog.trees.map((tree) => (
