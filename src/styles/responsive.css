@@ -5,13 +5,14 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
+  .abilities {
+    grid-template-rows: none;
+    grid-template-areas: 'list' 'wheel' 'picker' 'quickslots' 'info';
+  }
+
   .info {
     position: static;
     min-height: 0;
-  }
-
-  .wheel-screen {
-    grid-template-columns: minmax(0, 1fr);
   }
 }
 

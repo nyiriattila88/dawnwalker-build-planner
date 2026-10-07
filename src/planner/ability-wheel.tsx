@@ -199,10 +199,30 @@ export function AbilityWheel({ catalog, build, onChange, onShow }: AbilityWheelP
         </div>
       </FitToWidth>
 
+      {choice !== null && (
+        <ChoiceList
+          title={choice.title}
+          choices={choice.choices}
+          held={choice.held}
+          none={choice.none}
+          onPick={(ability) => {
+            choice.pick(ability);
+            setPicking(null);
+          }}
+          onClose={() => {
+            setPicking(null);
+          }}
+          onShow={show}
+        />
+      )}
+
       <section className="quickslot-sets" aria-label="Quickslots">
         {(['day', 'night'] as const).map((set) => (
           <div key={set} className={`quickslot-set ${set}`}>
-            <h4>{SET_NAMES[set]}</h4>
+            <h4>
+              <span className={set === 'day' ? 'sun' : 'moon'} aria-hidden="true" />
+              {SET_NAMES[set]}
+            </h4>
             <div className="pad">
               {QUICKSLOT_PLACES.map((where, index) => (
                 <WheelButton
@@ -228,22 +248,6 @@ export function AbilityWheel({ catalog, build, onChange, onShow }: AbilityWheelP
             </div>
           </div>
         ))}
-        {choice !== null && (
-          <ChoiceList
-            title={choice.title}
-            choices={choice.choices}
-            held={choice.held}
-            none={choice.none}
-            onPick={(ability) => {
-              choice.pick(ability);
-              setPicking(null);
-            }}
-            onClose={() => {
-              setPicking(null);
-            }}
-            onShow={show}
-          />
-        )}
       </section>
     </div>
   );

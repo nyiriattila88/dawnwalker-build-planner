@@ -2,6 +2,7 @@
 @import './styles/tokens.css';
 @import './styles/base.css';
 @import './styles/emblem.css';
+@import './styles/day-night.css';
 @import './styles/page.css';
 @import './styles/tabs.css';
 @import './styles/fit-to-width.css';

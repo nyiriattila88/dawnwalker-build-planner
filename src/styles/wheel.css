@@ -1,9 +1,47 @@
 /* The Active Abilities screen: the list, the wheel and the quickslots. */
+/* As the game lays it out: the list on the left, the wheel in the middle, the info panel on the
+   right and the two quickslot sets side by side in the bottom right corner. */
+.abilities {
+  grid-template-columns: 210px minmax(0, 1fr) 470px;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+    'list wheel info'
+    'list wheel picker'
+    'list wheel quickslots';
+}
+
 .wheel-screen {
-  display: grid;
-  grid-template-columns: 210px minmax(0, 1fr) 260px;
-  gap: 14px;
-  align-items: start;
+  display: contents;
+}
+
+.ability-list {
+  grid-area: list;
+}
+
+.wheel-screen > .fit-to-width {
+  grid-area: wheel;
+}
+
+.abilities > .info {
+  position: static;
+  grid-area: info;
+  min-height: 0;
+}
+
+.quickslot-sets {
+  display: flex;
+  flex-wrap: wrap;
+  grid-area: quickslots;
+  align-self: end;
+  justify-content: space-around;
+  gap: 18px;
+}
+
+.quickslot-set h4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .ability-list h3,
@@ -156,10 +194,6 @@
     0 -7px 0 -1px #cfc8bc;
 }
 
-.quickslot-set + .quickslot-set {
-  margin-top: 18px;
-}
-
 .pad {
   display: grid;
   grid-template: repeat(3, 66px) / repeat(3, 66px);
@@ -190,7 +224,7 @@
 }
 
 .choice-list {
-  margin-top: 16px;
+  grid-area: picker;
   padding: 10px;
   border: 1px solid var(--panel-border);
   background: var(--panel);

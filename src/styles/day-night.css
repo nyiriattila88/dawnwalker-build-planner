@@ -1,0 +1,16 @@
+/* The game's marks for the day and the night, beside a timing label or a quickslot set. */
+.sun {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 3px rgba(227, 181, 106, 0.35);
+}
+
+.moon {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  box-shadow: inset -4px 0 0 0 var(--gold);
+  transform: rotate(-30deg);
+}
