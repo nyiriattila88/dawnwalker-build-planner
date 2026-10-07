@@ -44,6 +44,10 @@ textures after the ability (`T_Icon_AA_SoulStigma`), and each texture was matche
 screenshot of the character screen. The emblems on the abilities' manuals agree, and Soul Reaping, the
 one without a texture, takes the last free cell, where its manual's emblem is drawn.
 
+Five abilities start with their first rank, as the story grants it: Compel Soul, Astral Communion,
+Burning Blood, Dirty Trick and Voracious Bite. This was checked in the game, where Mercurial Fervour has
+to be learned like any other rank.
+
 Two rules are assumptions: the 35 skill points an ultimate asks for count abilities as well as perks,
 and an ability needs no other ability first.
 
