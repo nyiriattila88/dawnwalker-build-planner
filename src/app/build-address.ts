@@ -9,14 +9,14 @@ export type BuildAddress = {
 
 const PARAMETER = 'build';
 
-// The build code in a link or in pasted text: the build parameter of a link, the hash of a 1.x link,
-// or the text itself when it is not a link.
+// The build code in a link or in pasted text: the build parameter of a link, or the text itself when
+// it is not a link.
 export function buildCodeIn(text: string): string {
   const trimmed = text.trim();
   if (!/^https?:\/\//i.test(trimmed)) return trimmed;
   try {
     const url = new URL(trimmed);
-    return url.searchParams.get(PARAMETER) ?? url.hash.slice(1);
+    return url.searchParams.get(PARAMETER) ?? '';
   } catch {
     return '';
   }
