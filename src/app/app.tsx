@@ -66,10 +66,13 @@ export function App({ catalog, codec, address }: AppProps): JSX.Element {
             </div>
           </>
         ) : (
-          <div className="abilities">
-            <AbilityWheel catalog={catalog} build={build} onChange={apply} onShow={setTarget} />
-            <InfoPanel target={target} build={build} tree={catalog.tree} />
-          </div>
+          <AbilityWheel
+            catalog={catalog}
+            build={build}
+            info={<InfoPanel target={target} build={build} tree={catalog.tree} />}
+            onChange={apply}
+            onShow={setTarget}
+          />
         )}
       </main>
 

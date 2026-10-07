@@ -1,13 +1,8 @@
 @media (max-width: 1250px) {
   /* The info panel moves under the tree and the wheel instead of narrowing them. */
   .character,
-  .abilities {
+  .wheel-screen {
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  .abilities {
-    grid-template-rows: none;
-    grid-template-areas: 'list' 'wheel' 'picker' 'quickslots' 'info';
   }
 
   .info {

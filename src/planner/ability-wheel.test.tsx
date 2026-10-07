@@ -29,6 +29,7 @@ function Wheel({ start, onShow }: WheelProps): JSX.Element {
         });
       }}
       onShow={onShow}
+      info={null}
     />
   );
 }

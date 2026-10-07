@@ -47,8 +47,7 @@
   min-height: 600px;
 }
 
-.character,
-.abilities {
+.character {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 470px;
   gap: 18px;

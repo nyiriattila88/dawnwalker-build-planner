@@ -1,40 +1,62 @@
 /* The Active Abilities screen: the list, the wheel and the quickslots. */
-/* As the game lays it out: the list on the left, the wheel in the middle, the info panel on the
-   right and the two quickslot sets side by side in the bottom right corner. */
-.abilities {
-  grid-template-columns: 210px minmax(0, 1fr) 470px;
-  grid-template-rows: auto auto 1fr;
-  grid-template-areas:
-    'list wheel info'
-    'list wheel picker'
-    'list wheel quickslots';
-}
-
+/* As the game lays it out: the list on the left, the wheel in the middle, and on the right the info
+   panel with the two quickslot sets side by side in the bottom right corner. */
 .wheel-screen {
-  display: contents;
+  position: relative;
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr) 470px;
+  gap: 18px;
+  align-items: start;
 }
 
-.ability-list {
-  grid-area: list;
+/* The game's engraving, faded out towards the edges, behind the whole screen. */
+.screen-art {
+  position: absolute;
+  inset: -12px;
+  background: 50% 30% / cover no-repeat;
+  opacity: 0.45;
+  mask-image: radial-gradient(ellipse 60% 70% at 50% 45%, #000 45%, transparent 100%);
+  pointer-events: none;
 }
 
-.wheel-screen > .fit-to-width {
-  grid-area: wheel;
+.ability-list,
+.wheel-screen > .fit-to-width,
+.wheel-side {
+  position: relative;
 }
 
-.abilities > .info {
+/* The slot a dragged ability would land on. */
+.wheel-button.drop-over {
+  filter: drop-shadow(0 0 7px var(--tree-edge, var(--glow)));
+}
+
+.wheel-button.drop-over .frame-edge {
+  stroke: var(--tree-edge, var(--glow));
+  stroke-width: 3;
+}
+
+.ability-group-items button[draggable='true'] {
+  cursor: grab;
+}
+
+.wheel-side {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  gap: 18px;
+}
+
+.wheel-side > .info {
   position: static;
-  grid-area: info;
   min-height: 0;
 }
 
 .quickslot-sets {
   display: flex;
   flex-wrap: wrap;
-  grid-area: quickslots;
-  align-self: end;
   justify-content: space-around;
   gap: 18px;
+  margin-top: auto;
 }
 
 .quickslot-set h4 {
@@ -224,7 +246,6 @@
 }
 
 .choice-list {
-  grid-area: picker;
   padding: 10px;
   border: 1px solid var(--panel-border);
   background: var(--panel);

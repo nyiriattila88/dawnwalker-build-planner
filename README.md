@@ -20,6 +20,7 @@ it was copied from.
   story grants.
 - **The ability wheel.** Each tree has one slot, and one more for every rank of its slot perk
   (Forbidden Sigils, Master Fencer, Vrakhiri Might). Abilities that take no slot work once learned.
+  Drag an ability onto a slot or a quickslot, or click a slot to pick one.
   The day quickslots take Swordmastery and Witchcraft actives, the night ones Swordmastery and
   Vampirism, as Coen fights in each form.
 - **The info panel.** What a perk or an ability does at each rank, in the game's own words, what each

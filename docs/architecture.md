@@ -65,7 +65,9 @@ rank with its cost, with ≈ on what is estimated.
 The **Active Abilities screen** places each tree's four slots on an arc of the wheel at the angles
 measured on the game's screen (`src/planner/wheel-layout.ts`), with the abilities that need no slot
 along the bottom, the activation charges in the middle and the two sets of directional quickslots
-beside it. A click on a slot opens the list of what it can take.
+beside it. A click on a slot opens the list of what it can take, and an ability can be dragged from the
+list onto a slot, from slot to slot or onto a quickslot. The drop goes to the slot the dragged icon
+covers most (`src/planner/drag-and-drop.ts`), and an ability dragged off its slot leaves it.
 
 ## Tests and checks
 
