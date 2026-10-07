@@ -636,7 +636,7 @@ export const PERKS = [
     name: 'Sustained Focus',
     tree: 'swordmastery',
     timing: 'anytime',
-    timingEstimated: true,
+    timingEstimated: false,
     description: 'Increases Activation Charges number.',
     ranks: [
       {
@@ -649,11 +649,11 @@ export const PERKS = [
       },
       {
         effect: '3 maximum Activation Charges',
-        cost: { skillPoints: 1, time: 1, estimated: true },
+        cost: { skillPoints: 1, time: 1, estimated: false },
       },
       {
         effect: '4 maximum Activation Charges',
-        cost: { skillPoints: 2, time: 1, estimated: true },
+        cost: { skillPoints: 2, time: 1, estimated: false },
       },
     ],
     requires: null,
