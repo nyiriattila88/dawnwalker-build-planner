@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.4.0 - 2026-10-07
+
+- The whole page stands on an official wallpaper of the game, a Gothic cathedral under the moon. It
+  replaces the engraving behind the skill trees and the stone wall of the Active Abilities screen.
+- The disc of the ability wheel is a plain dark grey, without the carved runes.
+
 ## 1.3.1 - 2026-10-07
 
 - The Active Abilities screen stands on a grey stone wall like the game's, with the runes carved into
