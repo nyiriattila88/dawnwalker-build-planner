@@ -128,9 +128,10 @@
   opacity: 0.3;
 }
 
+/* In the colour of the slot's tree or of the ability in it, gold for an empty quickslot. */
 .wheel-button.open .frame-edge,
 .wheel-button:hover:not(:disabled) .frame-edge {
-  stroke: var(--glow);
+  stroke: var(--tree-edge, var(--glow));
 }
 
 .wheel-fixed {

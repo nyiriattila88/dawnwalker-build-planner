@@ -66,12 +66,13 @@
   stroke: var(--bright);
 }
 
+/* A node lights up in the colour of its tree. */
 .node.selected .frame {
-  filter: drop-shadow(0 0 5px var(--glow)) drop-shadow(0 0 2px var(--glow));
+  filter: drop-shadow(0 0 5px var(--tree-edge)) drop-shadow(0 0 2px var(--tree-edge));
 }
 
 .node.selected .frame-edge {
-  stroke: var(--glow);
+  stroke: var(--tree-edge);
 }
 
 /* Taking another Ultimate Perk of the tree closes this one for good. */
