@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.1 - 2026-10-07
+
+- The abilities wear the game's own icons instead of glyphs cut from screenshots.
+- Life Lock and Soul Stigma, and Adrenaline Rush and Walking Fortress, sit in their own cells of the
+  Abilities grid, where the game shows them.
+- Perks and abilities are drawn in the game's proportions: a larger icon inside a slimmer frame.
+- The costs of Vrakhiri Might's second and third ranks are read from the game, no longer estimated.
+
 ## 1.0.0 - 2026-10-07
 
 - The first version: the Witchcraft, Swordmastery and Vampirism trees of the character screen, with
