@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.1.0 - 2026-10-07
+
+- The skill trees stand on the game's own engraving, the picture its character screen shows behind
+  every tree.
+- Highlights wear the colour of their tree: purple for Witchcraft, grey for Swordmastery and red for
+  Vampirism, on the tabs, on the node in focus and on the slots of the ability wheel.
+- The quickslot sets sit side by side in the bottom right corner, marked with the sun and the moon, so
+  the ability wheel has more room.
+- The page icon is the sun and moon brooch of the game.
+- The timing of Sustained Focus and the costs of its last two ranks are read from the game.
+
 ## 1.0.3 - 2026-10-07
 
 - Nothing changes in how the planner works: this release tidies the code behind it. New tests click,
