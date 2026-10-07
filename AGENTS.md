@@ -33,10 +33,12 @@ ESLint checks both, so a wrong import fails `pnpm check`.
 
 - **Build codes follow the data order.** A code walks the perks, abilities, ultimates, wheel slots and
   quickslots in the order of `src/data/` and the trees. Reordering or removing an entry silently
-  changes what every shared code means. New entries go at the end of their file, and a change that
-  cannot keep the old codes needs a new format behind a marker today's codes cannot contain, such as
-  `.`. The pinned codes in `src/build/build-code.test.ts` guard this, never change them to make a
-  test pass.
+  changes what every shared code means, and so does changing an ability's `granted`, which sets the
+  radix of its digit. New entries go at the end of their file. Today's codes start with `.`, and a
+  code without it is read with the layout of 1.0 (`GRANTED_IN_1_0` in `src/build/build-code.ts`). A
+  change that cannot keep today's codes needs another mark they cannot contain, such as `~`, with the
+  older layouts still read. The pinned codes in `src/build/build-code.test.ts` guard this, never
+  change them to make a test pass.
 - **A perk comes after the perk it requires.** Decoding adds ranks in data order, so a parent must come
   first. The catalog refuses data that breaks this.
 - **An estimate is never shown as the game's own number.** A rank's `cost.estimated` and a perk's

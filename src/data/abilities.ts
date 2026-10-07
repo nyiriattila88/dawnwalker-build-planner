@@ -317,7 +317,7 @@ export const ABILITIES = [
     ],
     cell: [1, 4],
     manual: true,
-    granted: 1,
+    granted: 0,
   },
   {
     id: 'dirty-trick',

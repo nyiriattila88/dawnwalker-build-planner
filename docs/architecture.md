@@ -50,6 +50,10 @@ accepts only a code that the result writes back unchanged, so every build has ex
 every accepted code exactly one build. Ranks come before the ultimates, whose requirement counts them,
 and the wheel before the quickslots, which only take what is on it.
 
+Since 1.0.2 a code starts with `.`, which base64url lacks. A code without it was written by 1.0, which
+took Mercurial Fervour's first rank as granted: it is read with the layout of 1.0 and keeps the ranks
+it bought, and the address bar then shows the build's code in today's form.
+
 ## The two screens
 
 The **character screen** draws a tree in the pixels of a 1920 by 1080 screenshot of the game: the

@@ -1,4 +1,4 @@
-import type { Catalog } from '../catalog/catalog';
+import type { Ability, Catalog } from '../catalog/catalog';
 import { Build, QUICKSLOT_TREES, type BuildView, type QuickslotSet } from './build';
 
 export type BuildCodec = {
@@ -9,8 +9,14 @@ export type BuildCodec = {
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
 const BASE = BigInt(ALPHABET.length);
+// Starts every code written since 1.0.2. The alphabet lacks it, so no 1.0 code can carry it.
+const MARK = '.';
 // Far longer than any build's code, so pasted junk is turned away before any arithmetic.
 const LONGEST = 120;
+
+// 1.0 took Mercurial Fervour's first rank as granted, so its digit counted the ranks bought on top.
+// Its codes carry no mark and are read with the ranks they bought.
+const GRANTED_IN_1_0: Readonly<Partial<Record<string, number>>> = { 'mercurial-fervour': 1 };
 
 // One digit of the build: its radix, how to read it from a build and how to write it into one.
 type Field = {
@@ -24,8 +30,9 @@ const repeat = (times: number, action: () => void): void => {
 };
 
 // The fields in the order a code walks them. Ranks come before the ultimates, whose requirement
-// counts them, and the wheel before the quickslots, which only take what is on the wheel.
-function fields(catalog: Catalog): readonly Field[] {
+// counts them, and the wheel before the quickslots, which only take what is on the wheel. An
+// ability's digit counts the ranks bought, up to what its layout's granted rank left to buy.
+function fields(catalog: Catalog, granted: (ability: Ability) => number): readonly Field[] {
   const perks = catalog.perks.map((perk): Field => ({
     radix: perk.ranks.length + 1,
     read: (build) => build.rank(perk),
@@ -36,7 +43,7 @@ function fields(catalog: Catalog): readonly Field[] {
     },
   }));
   const abilities = catalog.abilities.map((ability): Field => ({
-    radix: ability.ranks.length - ability.granted + 1,
+    radix: ability.ranks.length - granted(ability) + 1,
     read: (build) => build.abilityRank(ability) - ability.granted,
     write: (build, digit) => {
       repeat(digit, () => {
@@ -112,25 +119,32 @@ const fromText = (text: string): bigint | null => {
   return value;
 };
 
-// Writes a build as one mixed-radix number in base64url. A build has exactly one code and a code
-// exactly one build: decoding rebuilds through the commands of Build and accepts only a code that
-// the result writes back unchanged.
-export function createBuildCodec(catalog: Catalog): BuildCodec {
-  const walk = fields(catalog);
+const write = (walk: readonly Field[], build: BuildView): string => {
+  let value = 0n;
+  let weight = 1n;
+  for (const field of walk) {
+    value += BigInt(field.read(build)) * weight;
+    weight *= BigInt(field.radix);
+  }
+  return toText(value);
+};
 
-  const encode = (build: BuildView): string => {
-    let value = 0n;
-    let weight = 1n;
-    for (const field of walk) {
-      value += BigInt(field.read(build)) * weight;
-      weight *= BigInt(field.radix);
-    }
-    return toText(value);
-  };
+// Writes a build as a mark and one mixed-radix number in base64url. A build has exactly one code and
+// a code exactly one build: decoding rebuilds through the commands of Build and accepts only a code
+// that the result writes back unchanged.
+export function createBuildCodec(catalog: Catalog): BuildCodec {
+  const current = fields(catalog, (ability) => ability.granted);
+  const before = fields(catalog, (ability) => GRANTED_IN_1_0[ability.id] ?? ability.granted);
+
+  const encode = (build: BuildView): string => MARK + write(current, build);
 
   const decode = (code: string): Build | null => {
-    if (code === '' || code.length > LONGEST) return null;
-    let rest = fromText(code);
+    if (code.length > LONGEST) return null;
+    const marked = code.startsWith(MARK);
+    const walk = marked ? current : before;
+    const text = marked ? code.slice(MARK.length) : code;
+    if (text === '') return null;
+    let rest = fromText(text);
     if (rest === null) return null;
     const build = new Build(catalog);
     for (const field of walk) {
@@ -139,7 +153,7 @@ export function createBuildCodec(catalog: Catalog): BuildCodec {
       rest /= radix;
     }
     if (rest !== 0n) return null;
-    return encode(build) === code ? build : null;
+    return write(walk, build) === text ? build : null;
   };
 
   return { encode, decode };

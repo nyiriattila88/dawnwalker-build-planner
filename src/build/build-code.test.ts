@@ -65,9 +65,20 @@ const fullBuild = (): Build => {
   return build;
 };
 
+const smallBuild = (): Build => {
+  const build = new Build(catalog);
+  build.addRank(catalog.perk('stinging-blade'));
+  build.addRank(catalog.perk('stinging-blade'));
+  build.addRank(catalog.perk('fates-favour'));
+  build.addAbilityRank(catalog.ability('charge'));
+  build.slot(catalog.ability('charge'), 0);
+  build.setQuickslot('day', 0, catalog.ability('charge'));
+  return build;
+};
+
 describe('createBuildCodec', () => {
-  it('writes an empty build as A', () => {
-    expect(codec.encode(new Build(catalog))).toBe('A');
+  it('writes an empty build as .A', () => {
+    expect(codec.encode(new Build(catalog))).toBe('.A');
   });
 
   it('reads back every random build exactly', () => {
@@ -91,29 +102,36 @@ describe('createBuildCodec', () => {
   });
 
   it('rejects text that is not a whole build code', () => {
-    const inputs = ['', 'not a code', '!', 'z'.repeat(200)];
+    const inputs = ['', '.', 'not a code', '!', '.!', 'z'.repeat(200)];
 
     expect(inputs.map((input) => codec.decode(input))).toEqual(inputs.map(() => null));
   });
 
   // Shared links carry these. A data change that alters them breaks every link already out there.
   it('keeps writing the codes it wrote before', () => {
-    const small = new Build(catalog);
-    small.addRank(catalog.perk('stinging-blade'));
-    small.addRank(catalog.perk('stinging-blade'));
-    small.addRank(catalog.perk('fates-favour'));
-    small.addAbilityRank(catalog.ability('charge'));
-    small.slot(catalog.ability('charge'), 0);
-    small.setQuickslot('day', 0, catalog.ability('charge'));
+    expect([codec.encode(smallBuild()), codec.encode(fullBuild())]).toEqual([
+      '.BdtLTzYg_s7MicgXp4djLxBtYwAAZefB0gAA',
+      '.WMM4bg4n02ADXFbh6NL8QEbzaIl____________',
+    ]);
+  });
 
-    expect([codec.encode(small), codec.encode(fullBuild())]).toEqual([
-      'BK9vcpGz_wvW1KAS7GxPWNnxHAAAZefB0gAA',
-      'RwKTiz6GQrM143i0ukJjZp8pIG3____________',
+  it('reads the codes of 1.0 as the builds they were, with the Mercurial Fervour ranks they bought', () => {
+    const full = fullBuild();
+    full.removeAbilityRank(catalog.ability('mercurial-fervour'));
+
+    const decoded = [
+      codec.decode('BK9vcpGz_wvW1KAS7GxPWNnxHAAAZefB0gAA'),
+      codec.decode('RwKTiz6GQrM143i0ukJjZp8pIG3____________'),
+    ];
+
+    expect(decoded.map((build) => build && codec.encode(build))).toEqual([
+      codec.encode(smallBuild()),
+      codec.encode(full),
     ]);
   });
 
   it('rejects a second spelling of a build', () => {
-    expect(codec.decode('AA')).toBeNull();
-    expect(codec.decode('A')?.isEmpty()).toBe(true);
+    expect(['AA', '.AA'].map((code) => codec.decode(code))).toEqual([null, null]);
+    expect(['A', '.A'].map((code) => codec.decode(code)?.isEmpty())).toEqual([true, true]);
   });
 });
